@@ -18,6 +18,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="<?php echo $_SESSION['host']; ?>javascripts/jquery.ui.touch-punch.min.js"></script>
+    <script src="<?php echo $_SESSION['host']; ?>javascripts/Xmap.js"></script>
     <style>
         body {
             margin: 0px;
