@@ -60,6 +60,11 @@ foreach ($soundID as $x) {
                     $('#play-pause.player-footer').removeClass('paused');
                     $('#play-pause.playing').children().text('pause');
                     cover_draw(100,100,280,280);
+                    setActivePoint(findActivePoint(),function () {
+                        updateActivePosition();
+                        drawArea();
+                        drawActiveCircle();
+                    }); //XMAP.js
 
                 },
                 'before_play':function () {
@@ -84,6 +89,15 @@ foreach ($soundID as $x) {
                 }
             }
         });
+        var findActivePoint = function () {
+            var ampIndex = Amplitude.getActiveSongMetadata();
+            var id = ampIndex.id;
+            for(var i =0; i<points.length;i++){
+                if(points[i].titre === id){
+                    return points[i];
+                }
+            }
+        };
         var cover_draw = function (x,y,w,h) {
             var canvas = document.getElementById('cover_art_canvas');
             var ctx = canvas.getContext("2d");

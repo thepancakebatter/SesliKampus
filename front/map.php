@@ -91,6 +91,11 @@ foreach ($myLocID as $x){
                 // alert(a.titre);
                 var index = findIndexAMP(a.titre);
                 // Amplitude.playSongAtIndex(index);
+                Amplitude.playSongAtIndex(index);
+                setActivePoint(a,function () {
+                   drawActiveCircle();
+                });
+
             }
         });
         });
@@ -99,8 +104,8 @@ foreach ($myLocID as $x){
       var sounds = Amplitude.getSongs();
       for(var i = 0; i<sounds.length ; i++){
           if(a === sounds[i].id){
-              alert(i);
-              alert(JSON.stringify(sounds));
+              // alert(i);
+              // alert(JSON.stringify(sounds));
               return i;
           }
       }

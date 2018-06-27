@@ -33,7 +33,7 @@ var config = {
     },
     clickCallback: null
 };
-
+var active_point;
 var object_list = new Array(); //bölgeler ve altında bulunan noktalar
 var points = new Array();   //bütün noktlar
 var clickable = new Array(); // harita üstündeki noktalar
@@ -137,6 +137,32 @@ var drawMap = function (e, d) {
     if (config.map.cx > right) config.map.cx = right;
     if (config.map.cy > bottom) config.map.cy = bottom;
     ctx.drawImage(img, config.map.cx, config.map.cy, config.container.width / config.scale, config.container.height / config.scale, 0, 0, config.container.width, config.container.height);
+};
+var drawReload = function () {
+    var canvas = document.getElementById('Map');
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById(config.image.id);
+    ctx.drawImage(img, config.map.cx, config.map.cy, config.container.width / config.scale, config.container.height / config.scale, 0, 0, config.container.width, config.container.height);
+};
+var drawActiveCircle = function () {
+    var canvas = document.getElementById('Map');
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById(config.image.id);
+    var x = (active_point.x - config.map.cx) * config.scale;
+    var y = (active_point.y - config.map.cy) * config.scale;
+    ctx.beginPath();
+    // alert(JSON.stringify(active_point));
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth=4;
+    ctx.arc(x, y, (active_point.r+2)/1, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.closePath();
+};
+var setActivePoint = function (a,callback) {
+    active_point = a;
+    drawReload();
+    drawArea();
+    callback();
 };
 
 var resizedrawMap = function () {
@@ -376,7 +402,7 @@ var rePosition = function () {
             };
             drawMap(e, d);
             drawArea();
-
+            drawActiveCircle();
             // $('#point.Xmap').text('dx:' + (c2.x - c1.x) + ' dy:' + (c2.y - c1.y));
             // $('#point.Xmap').text('dx:' + df);
         }
@@ -407,7 +433,7 @@ var rePositionMobile = function (e) {
 
             drawMap(e, d);
             drawArea();
-
+            drawActiveCircle();
 
             // $('#point.Xmap').text('dx:' + (c2.x - c1.x) + ' dy:' + (c2.y - c1.y));
             // $('#point.Xmap').text('dx:' + df);
@@ -479,15 +505,54 @@ var ZoomMap = function () {
         config.scale = $(this).val();
         resizedrawMap();
         drawArea();
+        drawActiveCircle();
     });
     $('#Zoom.Xmap').mousemove(function () {
         if (mytrig) {
             config.scale = $(this).val();
             resizedrawMap();
             drawArea();
+            drawActiveCircle();
         }
     });
     $('#Zoom.Xmap').mouseup(function () {
         mytrig = false;
     });
+};
+var updateActivePosition = function () {
+    var x = (active_point.x - config.map.cx) * config.scale;
+    var y = (active_point.y - config.map.cy) * config.scale;
+
+    config.map.cx = config.map.cx + (x-config.container.width*config.scale/2);
+    config.map.cy = config.map.cy + (y-config.container.height*config.scale/2);
+    var canvas = document.getElementById('Map');
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById(config.image.id);
+    var right = (config.image.width - config.container.width) * config.scale;
+    var bottom = (config.image.height - config.container.height) * config.scale;
+    if (config.map.cx < 0) config.map.cx = 0;
+    if (config.map.cy < 0) config.map.cy = 0;
+    if (config.map.cx > right) config.map.cx = right;
+    if (config.map.cy > bottom) config.map.cy = bottom;
+    ctx.drawImage(img, config.map.cx, config.map.cy, config.container.width / config.scale, config.container.height / config.scale, 0, 0, config.container.width, config.container.height);
+
+};
+
+var updateSelectedPosition = function (a,b) {
+    var x = (a - config.map.cx) * config.scale;
+    var y = (b - config.map.cy) * config.scale;
+
+    config.map.cx = config.map.cx + (x-config.container.width*config.scale/2);
+    config.map.cy = config.map.cy + (y-config.container.height*config.scale/2);
+    var canvas = document.getElementById('Map');
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById(config.image.id);
+    var right = (config.image.width - config.container.width) * config.scale;
+    var bottom = (config.image.height - config.container.height) * config.scale;
+    if (config.map.cx < 0) config.map.cx = 0;
+    if (config.map.cy < 0) config.map.cy = 0;
+    if (config.map.cx > right) config.map.cx = right;
+    if (config.map.cy > bottom) config.map.cy = bottom;
+    ctx.drawImage(img, config.map.cx, config.map.cy, config.container.width / config.scale, config.container.height / config.scale, 0, 0, config.container.width, config.container.height);
+
 };

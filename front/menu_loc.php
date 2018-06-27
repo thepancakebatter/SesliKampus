@@ -12,7 +12,7 @@
     function get_location($a, $conn)
     {
         $db = new xquery($conn);
-        $loc = $db->Xquery('SELECT location_id,parent_id,name FROM sk_location ', '', true, false);
+        $loc = $db->Xquery('SELECT location_id,parent_id,name,positionX,positionY FROM sk_location ', '', true, false);
         $location = array();
         if ($loc == 0) return NULL;
 //                    $location["children"] = array();
@@ -21,6 +21,8 @@
             $location["name"] = $x["name"];
             $location["location_id"] = $x["location_id"];
             $location["parent_id"] = $x["parent_id"];
+            $location["x"] = $x["positionX"];
+            $location["y"] = $x["positionY"];
 //                        array_push($location["children"],get_location($x["location_id"], $conn));
             array_push($locup, $location);
         }
@@ -37,7 +39,7 @@
             if (element2 == null) return;
             for (var i = 0; i < element2.length; i++) {
                 var nesne = "<div class ='locbox-container location-option-menu' id='" + element2[i].location_id + "'>" +
-                    "<div class='locbox-title' id='" + element2[i].location_id + "'>&#9679;" + element2[i].name + "</div>" +
+                    "<div class='locbox-title' data-x='"+element2[i].x+"' data-y='"+element2[i].y+"' id='" + element2[i].location_id + "'>&#9679;" + element2[i].name + "</div>" +
                     "<div class='locbox-inside-menu' id='" + element2[i].location_id + "'></div>" +
                     "</div>";
                 if (element2[i].parent_id == 0) {
@@ -101,7 +103,15 @@
                     }
                 }
             });
+            $('.locbox-title').click(function () {
 
+                var x =  $('#' + $(this).get(0).id + '.locbox-title').attr('data-x');
+                var y =  $('#' + $(this).get(0).id + '.locbox-title').attr('data-y');
+
+                updateSelectedPosition(x,y);
+                drawArea();
+                drawActiveCircle();
+            });
         });
 
 

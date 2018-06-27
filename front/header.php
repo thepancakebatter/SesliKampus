@@ -6,7 +6,7 @@
                     href="/seslikampus/test.php">Sesli Kampus</a></div>
         <div class="header" id="right">
             <div class="header" id="search-box" style="display: flex;">
-                <span class="header pages-slider open" id="search-icon" data-port="container.search"><i
+                <span class="header pages-slider open" id="search-icon" style="display: none;" data-port="container.search"><i
                             class="material-icons">search</i></span><span class="draggable-list" id="toggle" style="margin-left: 10px;"><i
                             class="material-icons">playlist_play</i></span>
             </div>
