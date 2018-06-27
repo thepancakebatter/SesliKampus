@@ -1,5 +1,18 @@
+<?php
+//harita tam  anlamıyla ütn konumları karşılamadığı için eldeki alt konumları göstermek içien geçici bir alt script
+include_once('Xquery.php');
+$db = new xquery($conn);
+//$myLocID = array(0,18,19,20,21,22,23,24,25,26,27,29,30,31,32,62,66,67,69,71);
+function findParent($Id,$con){
+    $db = new xquery($con);
+    $loc_obj = $db->Xquery('SELECT * FROM sk_location WHERE location_id = ?',$Id);
+//    print_r($loc_obj);
+}
+
+?>
 <img class="Xmap" id="main-image" src="media/Map.jpg" style="display: none;">
 <div class="Xmap" id="container" >
+
     <input id="Zoom" type="range" class="Xmap" data-role="none"  style="opacity: 0" min="1" max="2" step="0.02" value="1">
     <canvas id="Map" class="XMap" style="border: 1px solid olivedrab"></canvas>
 </div>

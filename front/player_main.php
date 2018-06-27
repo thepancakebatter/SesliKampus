@@ -12,9 +12,9 @@
     <div class="player pages-slider close" id="main-player-header">
         <div class="player" id="infos"
              style="display: flex;justify-content: space-between;padding: 10px; color: whitesmoke; text-shadow: none;text-align: center;">
-            <div style="width: 100%">
+            <div style="width: 100%;overflow: hidden;">
                 <span amplitude-song-info="titre" amplitude-main-song-info="true" class="song-name"
-                      style="font-family: Bungee;"></span><br>
+                      style="font-family: Bungee;white-space: nowrap;overflow: hidden;max-width: 90%;"></span><br>
                 <span amplitude-song-info="location" amplitude-main-song-info="true" class="song-name"></span>-<span
                         amplitude-song-info="author" amplitude-main-song-info="true" class="song-name"></span>
             </div>
@@ -137,12 +137,19 @@
         <div class="description" id="title"
              style="display: flex; justify-content: space-between; color:whitesmoke; text-shadow:none;background-color: #cc3300;font-family: Bungee;padding: 10px;">
         <span amplitude-song-info="titre" amplitude-main-song-info="true" class="song-name"
-              style="font-family: Bungee;"></span><br>
+              style="font-size:14px;font-family: Bungee;white-space: normal;max-width: 80%;"></span><br>
+
             <span class="description" id="add-comment"><i class="material-icons" style="color: whitesmoke">
 add_comment
 </i></span>
         </div>
         <div class="description" id="description-text" style="font-family: Helvetica; text-shadow: none;padding: 10px;">
+            <span amplitude-song-info="date" amplitude-main-song-info="true"
+                  class="song-name"
+                  style="font-family: Helvetica;float: right;"></span>
+            <span amplitude-song-info="time" amplitude-main-song-info="true"
+                  class="song-name"
+                  style="font-family: Helvetica;float: left;"></span><br>
             <span amplitude-song-info="description" amplitude-main-song-info="true"
                                                  class="song-name"
                                                  style="font-family: Helvetica;"></span><br></div>

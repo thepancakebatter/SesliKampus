@@ -9,8 +9,8 @@
 <div class="menu" id="container" style="display: none;">
     <div class="menu" id="inside">
         <div class="menu" id="top" style="display: flex;">
-            <!--            <a href="front/admin.php" data-ajax="false" >AdminPage</a>-->
-            <!--            <a href="admin-seslikampus/" data-ajax="false" >Super-->
+<!--                        <a href="front/admin.php" data-ajax="false" >AdminPage</a>-->
+<!--                        <a href="admin-seslikampus/" data-ajax="false" >Super-->
             <!--                Admin</a>-->
             <span class="menu" id="language">Tr</span>
             <span class="menu" id="leftmenuclose"><i class="material-icons">close</i></span>
@@ -26,8 +26,8 @@
         <div class="menu" id="mid-bottom">
             <div id="locations" class="menu top-title">MEKANLAR</div>
             <div id="locations" class="menu sub-container" ><?php include('front/menu_loc.php'); ?></div>
-            <div id="genres" class="menu top-title">TÜRLER</div>
-            <div id="genres" class="menu sub-container"></div>
+<!--            <div id="genres" class="menu top-title">TÜRLER</div>-->
+<!--            <div id="genres" class="menu sub-container"></div>-->
             <div id="about" class="menu top-title last">HAKKINDA</div>
             <div id="about" class="menu sub-container"></div>
 

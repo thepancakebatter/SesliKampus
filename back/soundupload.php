@@ -84,11 +84,13 @@ if ($proces) {
          'photo' => $unique_i
     );
 
-    if ($db->Xquery('INSERT INTO sk_sounds SET  ?', $sound_post, false, false)) {
+    if ($db->Xquery('INSERT INTO sk_sounds SET  ?', $sound_post, false, true)) {
         $sound_id = $db->Xquery('SELECT sound_id FROM sk_sounds WHERE soundfile = ?', $sound_post['soundfile']);
         //        echo 'sound_id:' . $sound_id;
     } else {
         //        echo 'Sound TAble insertation error!!';
+        //todo:keseme işaretleri insertation error yaratıyor
+        //todo:etiketlerden sonraki tırnağı alma
         $sound_id = null;
         ErrorPost(3, $error);
         $success = false;

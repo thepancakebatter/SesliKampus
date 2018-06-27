@@ -376,7 +376,7 @@
                     $('#sound.alert').text('Dosya boyut aşımı');
                     return false;
                 }
-                if (imagesize) {
+                if (!imagesize) {
                     $('#sound.alert').text('Fotoğraf Dosya boyut aşımı');
                     return false;
                 }

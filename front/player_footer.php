@@ -7,10 +7,14 @@
             <span class="amplitude-play paused player-footer" id="play-pause"><i class="material-icons">play_arrow</i></span>
         </div>
         <div class="player-footer pages-slider open" id="sound-info" data-port="main.player">
-            <div id="meta-container">
-                <span amplitude-song-info="titre" amplitude-main-song-info="true" class="song-name" style="font-family: Bungee;"></span><br>
+            <div id="meta-container" class="player-footer" style="overflow: hidden;">
+                <script>
+                    $(document).ready(function () {
+                        $('#meta-container.player-footer').css('max-width',($('#footer-out.player-footer').innerWidth()-150)+'px');
+                    });
+                </script>
+                <span amplitude-song-info="titre" amplitude-main-song-info="true" class="song-name" style="white-space:nowrap;font-family: Bungee;"></span><br>
                 <span amplitude-song-info="location" amplitude-main-song-info="true" class="song-name"></span>
-                <span amplitude-song-info="genre" amplitude-main-song-info="true" class="song-name"></span>
             </div>
         </div>
         <div class="player-footer" id="like"><span class="like-button unlike" id="player-footer"><i
