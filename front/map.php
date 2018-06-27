@@ -2,11 +2,40 @@
 //harita tam  anlamıyla ütn konumları karşılamadığı için eldeki alt konumları göstermek içien geçici bir alt script
 include_once('Xquery.php');
 $db = new xquery($conn);
-//$myLocID = array(0,18,19,20,21,22,23,24,25,26,27,29,30,31,32,62,66,67,69,71);
+$myLocID = array("0","18","19","20","21","22","23","24","25","26","27","29","30","31","32","62","66","67","69","71");
 function findParent($Id,$con){
     $db = new xquery($con);
-    $loc_obj = $db->Xquery('SELECT * FROM sk_location WHERE location_id = ?',$Id);
-//    print_r($loc_obj);
+    $loc_obj = $db->Xquery('SELECT positionX,parent_id FROM sk_location WHERE location_id = ?',$Id,false,false);
+    if($loc_obj['positionX'] == 0){
+        return findParent($loc_obj['parent_id'],$con);
+    }else{
+        return $Id;
+    }
+}
+$Mapobject = array();
+$obj;
+foreach ($myLocID as $x){
+    $Loc =  $db ->Xquery('SELECT name,positionX,positionY,radius,color FROM sk_location WHERE location_id = ?',$x);
+    $obj['title'] = $Loc['name'];
+    $obj['x'] = $Loc['positionX'];
+    $obj['y'] = $Loc['positionY'];
+    $obj['r'] = $Loc['radius'];
+    $obj['color'] = $Loc['color'];
+    $obj['items'] = array('count'=>0,'id' => array());
+    $Mapobject[$x] = $obj;
+ }
+$sounds = $db->Xquery('SELECT sound_id,location_id FROM sk_location_relationships','',true,false);
+//print_r($sounds);
+foreach ($sounds as $x){
+//    echo 'aa'.$x['location_id'].'<br>';
+    $parent = findParent($x['location_id'],$conn);
+
+    array_push($Mapobject[$parent]['items']['id'],$x['sound_id']);
+    $Mapobject[findParent($x['location_id'],$conn)]['items']['count']++;
+}
+$jsonobj = array();
+foreach ($myLocID as $x){
+    array_push($jsonobj,$Mapobject[$x]);
 }
 
 ?>
@@ -40,19 +69,7 @@ function findParent($Id,$con){
 </style>
 <script>
     $('#main-image.Xmap').ready(function () {
-        var obj = [{
-            "title": "a",
-            x: 600,
-            y: 300,
-            r: 34,
-            items: {
-                count: 4,
-                id: [45,5,6,4]
-            }
-            ,
-            color: "red"
-
-        }];
+        var obj = <?php echo json_encode($jsonobj, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
     var Xmap_width = window.innerWidth;
     var Xmap_height = window.innerHeight - $('#container.header').innerHeight() - $('#footer-out.player-footer').innerHeight();
     setupXmap('main-image',Xmap_width, Xmap_height, function () {
@@ -71,10 +88,22 @@ function findParent($Id,$con){
                 ZoomMap();
             }
             config.clickCallback = function (a) {
-                // alert('a');
+                // alert(a.titre);
+                var index = findIndexAMP(a.titre);
+                // Amplitude.playSongAtIndex(index);
             }
         });
         });
     });
+    var findIndexAMP = function (a) {
+      var sounds = Amplitude.getSongs();
+      for(var i = 0; i<sounds.length ; i++){
+          if(a === sounds[i].id){
+              alert(i);
+              alert(JSON.stringify(sounds));
+              return i;
+          }
+      }
+    };
     });
 </script>

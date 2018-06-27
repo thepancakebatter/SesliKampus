@@ -42,7 +42,7 @@ if ($loadsite) {
 
 }
 ?>
-<script src="javascripts/amplitudejs-3.2.3/dist/amplitude.js"></script>
+<script src="javascripts/amplitudejs-3.3.0/dist/amplitude.js"></script>
 
 
 <!--<script src="jquery.ui.touch-punch.min.js"></script>-->
