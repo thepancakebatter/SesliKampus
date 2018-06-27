@@ -48,6 +48,8 @@ if (!file_exists('config.php') && $key) {
     \$host = \$_SERVER['REQUEST_SCHEME'].'://';
     \$host .= \$_SERVER['HTTP_HOST'];
     \$host .= \$_SERVER['REQUEST_URI'];
+      define('SK_PATH',dirname(__FILE__));
+    include_once ('myfunction.php');
     ?>";
 
 //    include_once ('setup/database-instalation.php');
