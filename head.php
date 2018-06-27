@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Bungee' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://rawgithub.com/moment/moment/2.2.1/min/moment.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.css">
@@ -19,18 +20,19 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="<?php echo $_SESSION['host']; ?>javascripts/jquery.ui.touch-punch.min.js"></script>
     <script src="<?php echo $_SESSION['host']; ?>javascripts/Xmap.js"></script>
+
     <style>
         body {
             margin: 0px;
             font-family: Helvetica;
             overflow: hidden;
-
+            text-shadow: none;
         }
-
+        i { text-shadow: none;}
         span {
             cursor: pointer;
         }
-
+        div{text-shadow: none;}
         .navigation {
             cursor: pointer;
             color: firebrick;

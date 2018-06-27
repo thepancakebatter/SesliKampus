@@ -50,20 +50,26 @@ foreach ($soundID as $x) {
             "callbacks": {
                 'after_play': function () {
                     playCount++;
-                    $('#play-pause').addClass('playing');
+
                     var index = Amplitude.getActiveIndex();
                     $('#'+index+'.sound-itemlist-container').addClass('playing');
                     $('#'+index+'.sound-itemlist-container').removeClass('paused');
-                    $('#play-pause').removeClass('paused');
+                    $('#play-pause.player').addClass('playing');
+                    $('#play-pause.player').removeClass('paused');
+                    $('#play-pause.player-footer').addClass('playing');
+                    $('#play-pause.player-footer').removeClass('paused');
                     $('#play-pause.playing').children().text('pause');
+                    cover_draw(100,100,280,280);
 
                 },
                 'before_play':function () {
                     prev_song = Amplitude.getActiveIndex();
                 },
                 'after_pause': function () {
-                    $('#play-pause').addClass('paused');
-                    $('#play-pause').removeClass('playing');
+                    $('#play-pause.player').addClass('paused');
+                    $('#play-pause.player').removeClass('playing');
+                    $('#play-pause.player-footer').addClass('paused');
+                    $('#play-pause.player-footer').removeClass('playing');
                     $('#play-pause.paused').children().text('play_arrow');
                     // alert('durdu');
                 },
@@ -78,10 +84,20 @@ foreach ($soundID as $x) {
                 }
             }
         });
-
+        var cover_draw = function (x,y,w,h) {
+            var canvas = document.getElementById('cover_art_canvas');
+            var ctx = canvas.getContext("2d");
+            var img = document.getElementById('cover_art_img');
+            canvas.height = $('#cover_art.player').innerHeight();
+            canvas.width = $('#cover_art.player').innerWidth();
+            ctx.drawImage(img,x,y,w,h,0,0,canvas.width,canvas.width);
+        };
+        cover_draw(100,100,50,50);
+        //todo:data base üzerinden çekilcek x,y,w,h
     });
     // var song = Amplitude.getSongs();
     $(document).ready(function () {
+
         createtimelist();
         $('.sound-itemlist-container').click(function () {
            // alert($(this).get(0).id);

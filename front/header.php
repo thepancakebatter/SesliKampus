@@ -2,30 +2,34 @@
     <div class="header" id="in-container">
         <div class="header" id="left"><span class="header" id="profil-icon"><i class="material-icons">account_circle</i></span>
         </div>
-        <div class="header" id="mid"><a href="/seslikampus/test.php">Sesli Kampus</a></div>
+        <div class="header" id="mid"><a
+                    href="/seslikampus/test.php">Sesli Kampus</a></div>
         <div class="header" id="right">
             <div class="header" id="search-box" style="display: flex;">
-                <span class="header pages-slider open" id="search-icon" data-port="container.search"><i class="material-icons">search</i></span>
+                <span class="header pages-slider open" id="search-icon" data-port="container.search"><i
+                            class="material-icons">search</i></span><span class="draggable-list" id="toggle" style="margin-left: 10px;"><i
+                            class="material-icons">playlist_play</i></span>
             </div>
         </div>
     </div>
 </div>
 <div class="draggable-list ui-widget-content" id="container">
-    <div class="draggable-list" id="inside" ></div>
-    <div class="draggable-list" id="toggle"></div>
+    <div class="draggable-list" id="inside"></div>
+    <div class="draggable-list" id="callback">Sesli Kampus</div>
 </div>
 
 
 <style>
     .header input[type=text] {
-        background-color: rgba(255,251,13,0);
+        background-color: rgba(255, 251, 13, 0);
         color: whitesmoke;
         display: none;
     }
+
     #container.header {
         width: 100%;
         height: 40px;
-        background: #0c3d5d;
+        background: #CC3300;
         color: whitesmoke;
         position: fixed;
         top: 0px;
@@ -48,64 +52,74 @@
 
     #container.draggable-list {
         position: fixed;
-        top: 40px;
+        top: 0px;
         width: 100%;
         height: 0px;
         background-color: rgba(245, 245, 245, 0.65);
         margin: auto;
-        transition: 1s;
+
         /*overflow:scroll;*/
         z-index: 99;
     }
-
-    #toggle.draggable-list {
-        position: absolute;
-        margin: auto;
-        width: 60px;
-        height: 15px;
-        top: 100%;
-        bottom: -15px;
-        left: 0px;
-        right: 0px;
-        background-color: #cc4b37;
-        /*border-radius: 30px;*/
-        border-bottom-left-radius: 30px;
-        border-bottom-right-radius: 30px;;
+    #callback.draggable-list:hover{
+        cursor: pointer;
     }
-    #inside.draggable-list{
+    #callback.draggable-list {
+        text-align: center;
+        font-size: 13px;
+        color: whitesmoke;
+        text-shadow: none;
+        padding-top: 4px;
+    margin: auto;
+    width: 100%;
+    height: 25px;
+    top: 100%;
+    left: 0px;
+    right: 0px;
+        display: none;
+    background-color: #cc4b37;
+    /*border-radius: 30px;*/
+
+        z-index: 98;
+    }
+    #inside.draggable-list {
         /*border: 2px solid red;*/
         padding: 0px;
         height: 0%;
         margin: 0px;
         overflow-y: scroll;
-    overflow-x: hidden ;
+        overflow-x: hidden;
         transition: 2s;
+        z-index: 99;
     }
 
-    .sound-itemlist-container{
+    .sound-itemlist-container {
         background-color: #f7e4e1;
         border-bottom: 1px solid #3adb76;
     }
-    .sound-itemlist-container.playing{
-        background-color:#cc4b37;
+
+    .sound-itemlist-container.playing {
+        background-color: #cc4b37;
     }
 
-    #cover.sound-itemlist{
+    #cover.sound-itemlist {
         width: 50px;
         height: 50px;
 
     }
-    #meta.sound-itemlist{
+
+    #meta.sound-itemlist {
         display: block;
         padding: 5px;
         width: 100%;
     }
-    #row1.sound-itemlist{
+
+    #row1.sound-itemlist {
         display: flex;
         justify-content: space-between;
     }
 
-    #row2.sound-itemlist{
+    #row2.sound-itemlist {
         display: flex;
         justify-content: space-between;
     }
@@ -127,32 +141,37 @@
     // });
     $(document).ready(function () {
         var time_line = false;
+        var h = (window.innerHeight*75/100);
+        $('#container.draggable-list').css('height',h+'px');
+        // $('#toggle').css('bottom','-15px');
+        // $('#toggle').css('top','100%');
+        $('#inside.draggable-list').css('height', h+'px');
+        // $('#container.draggable-list').css('opacity', '1');
+        $('#inside.draggable-list').css('opacity', '1');
+        $('#container.draggable-list').slideUp(0);
         $('#toggle').click(function () {
             if (time_line == false) {
-                $('#container.draggable-list').css('height', '75%');
-                // $('#toggle').css('bottom','-15px');
-                // $('#toggle').css('top','100%');
-                $('#inside.draggable-list').css('height','98%');
-                // $('#container.draggable-list').css('opacity', '1');
-                $('#inside.draggable-list').css('opacity','1');
 
+                $('#container.draggable-list').slideDown(500);
+                $('#callback.draggable-list').slideDown(500);
 
                 time_line = true;
             }
             else {
-                $('#container.draggable-list').css('height', '0%');
-                $('#inside.draggable-list').css('height','0%');
-                // $('#container.draggable-list').css('opacity', '0');
-                $('#inside.draggable-list').css('opacity','0');
+                $('#container.draggable-list').slideUp(500);
 
                 time_line = false;
             }
         });
+        $('#callback.draggable-list').click(function () {
+            $('#container.draggable-list').slideUp(500);
 
+            time_line = false;
+        });
     });
-// $(document).ready(function () {
-//    $('body').click(function () {
-//        alert(JSON.stringify(song));
-//    }) ;
-// });
+    // $(document).ready(function () {
+    //    $('body').click(function () {
+    //        alert(JSON.stringify(song));
+    //    }) ;
+    // });
 </script>

@@ -50,12 +50,12 @@ if ($loadsite) {
 <script>
     var pagelifo = new Array();
     pagelifo = ["container.map"];
-    <?php //sayfaları çağıran get,post queryler ?>
     $('.pages-slider').click(function () {
         // alert(pagelifo);
         if ($(this).hasClass('open')) {
             var port = $(this).attr('data-port');
             pagelifo.push(port);
+            $('#' + port).addClass('opened');
             $('#' + port).slideDown(500);
             for (var i = 0; i < $('.pages-slider').length; i++) {
                 var a = $('.pages-slider').get(i).id;
@@ -63,6 +63,7 @@ if ($loadsite) {
                     var prt = $('#' + a + '.pages-slider').attr('data-port');
                     if (prt !== port) {
                         $('#' + prt).slideUp(500);
+                        $('#' + prt).removeClass('opened');
                     }
                 }
             }
@@ -70,17 +71,23 @@ if ($loadsite) {
             pagelifo.pop();
             var last = pagelifo.length;
             $('#' + pagelifo[last - 1]).slideDown(500);
-
+            $('#' + pagelifo[last - 1]).addClass('opened');
             for (var i = 0; i < $('.pages-slider').length; i++) {
                 var a = $('.pages-slider').get(i).id;
                 if ($('#' + a + '.pages-slider').hasClass('open')) {
                     var prt = $('#' + a + '.pages-slider').attr('data-port');
                     if (prt !== pagelifo[last - 1]) {
                         $('#' + prt).slideUp(500);
+                        $('#' + prt).removeClass('opened');
                     }
                 }
             }
 
+        }
+        if($('#main.player').hasClass('opened')){
+            $('#footer-out.player-footer').slideUp(500);
+        }else{
+            $('#footer-out.player-footer').slideDown(500);
         }
     });
     // $('#sound-info.player-footer').click(function () {

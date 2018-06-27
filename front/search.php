@@ -36,24 +36,24 @@ keyboard_arrow_up</i></i></span></div>
                 include_once('Xquery.php');
                 include_once('config.php');
                 //todo:üst konumlarda filrenelebilir
-                function get_location($a, $conn)
-                {
-                    $db = new xquery($conn);
-                    $loc = $db->Xquery('SELECT location_id,parent_id,name FROM sk_location ', '', true, false);
-                    $location = array();
-                    if ($loc == 0) return NULL;
-//                    $location["children"] = array();
-                    $locup = array();
-                    foreach ($loc as $x) {
-                        $location["name"] = $x["name"];
-                        $location["location_id"] = $x["location_id"];
-                        $location["parent_id"] = $x["parent_id"];
-//                        array_push($location["children"],get_location($x["location_id"], $conn));
-                        array_push($locup, $location);
-                    }
-//                    print_r($loc);
-                    return $locup;
-                }
+//                function get_location($a, $conn)
+//                {
+//                    $db = new xquery($conn);
+//                    $loc = $db->Xquery('SELECT location_id,parent_id,name FROM sk_location ', '', true, false);
+//                    $location = array();
+//                    if ($loc == 0) return NULL;
+////                    $location["children"] = array();
+//                    $locup = array();
+//                    foreach ($loc as $x) {
+//                        $location["name"] = $x["name"];
+//                        $location["location_id"] = $x["location_id"];
+//                        $location["parent_id"] = $x["parent_id"];
+////                        array_push($location["children"],get_location($x["location_id"], $conn));
+//                        array_push($locup, $location);
+//                    }
+////                    print_r($loc);
+//                    return $locup;
+//                }
 
                 $locations = get_location(0, $conn);
                 //               echo json_encode($locations, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
@@ -1197,7 +1197,7 @@ keyboard_arrow_up</i></i></span></div>
     }
 
     .ui-widget-content {
-        border: 1px solid #dddddd;
+        /*border: 1px solid #dddddd;*/
         /*background: #eeeeee url(images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x;*/
         color: #333333;
     }

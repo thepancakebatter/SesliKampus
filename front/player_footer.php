@@ -4,11 +4,11 @@
     <div class="player-footer true" id="footer-container">
     <div class="player-footer" id="footer-container-inside">
         <div class="player-footer" id="sound-controller">
-            <span class="amplitude-play paused" id="play-pause"><i class="material-icons">play_arrow</i></span>
+            <span class="amplitude-play paused player-footer" id="play-pause"><i class="material-icons">play_arrow</i></span>
         </div>
         <div class="player-footer pages-slider open" id="sound-info" data-port="main.player">
             <div id="meta-container">
-                <span amplitude-song-info="titre" amplitude-main-song-info="true" class="song-name"></span><br>
+                <span amplitude-song-info="titre" amplitude-main-song-info="true" class="song-name" style="font-family: Bungee;"></span><br>
                 <span amplitude-song-info="location" amplitude-main-song-info="true" class="song-name"></span>
                 <span amplitude-song-info="genre" amplitude-main-song-info="true" class="song-name"></span>
             </div>
@@ -18,9 +18,10 @@
     </div>
 </div>
 </div>
+<?php //todo:beğenme fonksiyonu eklenecek ?>
 <style>
     #footer-container.player-footer {
-        background: #cc4b37;
+        background: #cc3300;
         height: 60px;
         color: whitesmoke;
         max-height: 60px;
