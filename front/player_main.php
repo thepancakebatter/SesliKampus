@@ -27,7 +27,7 @@
     <div class="player" id="cover_art">
         <img id="cover_art_img" class="player" amplitude-song-info="cover_art_url"
              amplitude-main-song-info="true"/>
-<!--        <canvas id="cover_art_canvas"></canvas>-->
+        <canvas id="cover_art_canvas" style="display: none;"></canvas>
 
     </div>
     <div id="time-container" style=" display: flex;justify-content: space-between; padding: 10px;">
@@ -158,7 +158,7 @@ add_comment
 </div>
 <style>
     #main.player {
-        background-color: #fba634;
+        background-color: whitesmoke;
         display: none;
     }
 
