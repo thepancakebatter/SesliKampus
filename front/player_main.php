@@ -25,9 +25,9 @@
         </div>
     </div>
     <div class="player" id="cover_art">
-        <img style="display: none;" id="cover_art_img" class="player" amplitude-song-info="cover_art_url"
+        <img id="cover_art_img" class="player" amplitude-song-info="cover_art_url"
              amplitude-main-song-info="true"/>
-        <canvas id="cover_art_canvas"></canvas>
+<!--        <canvas id="cover_art_canvas"></canvas>-->
 
     </div>
     <div id="time-container" style=" display: flex;justify-content: space-between; padding: 10px;">
