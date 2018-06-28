@@ -37,8 +37,9 @@ if ($db->Xquery('SELECT email FROM sk_users WHERE email = ?', $_POST['email'])) 
     if (password_verify($_POST['password'], $db->Xquery('SELECT password FROM sk_users WHERE email = ?', $_POST['email']))) {
         $result = true;
         $_SESSION['permission'] = $db->Xquery('SELECT permission FROM sk_users WHERE email = ?', $_POST['email']);
-        $_SESSION['user'] = $db->Xquery('SELECT permission,email,name,f_name,profil_icon FROM sk_users WHERE email = ?', $_POST['email']);
+        $_SESSION['user'] = $db->Xquery('SELECT permission,email,name,f_name,profil_icon,user_id FROM sk_users WHERE email = ?', $_POST['email']);
 //            print_r($_SESSION['user']);
+        $_SESSION['sound_id'] = null;
     } else $result = false;
 
 } else $result = false;

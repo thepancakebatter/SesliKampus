@@ -59,33 +59,56 @@ include_once('../front/header.php');
 </script>
 <?php if(isset($_SESSION['user'])): ?>
 <div class="add-audio" id="container"style="overflow: scroll;" >
-    <form>
-    <div>
-    <div class="add-audio stepper" id="container2" style="padding: 30px; margin: auto;margin-top: 10px; display: flex;justify-content: space-between;">
-        <div class="circle viewer open" id="step1">
-            <div id="step1" clas>Ses Kaydı</div>
-        </div>
-        <div class="rect viewer" id="step1-done"></div>
-        <div class="circle viewer" id="step2">
-        </div>
 
+    <form enctype="multipart/form-data" method="post" action="post.php"
+          onsubmit="return checkinsertation()" >
+    <div>
+
+    <div class="add-audio stepper" id="container2" style="padding: 30px; margin: auto;margin-top: 10px; display: flex;justify-content: space-between;">
+        <div class="element viewer">
+        <div class="circle viewer open" id="step1">
+        </div><div id="step1" class="subtitle viewer opens">Kaydet</div>
+
+        </div>
+<!--        <div class="element viewer">-->
+<!--        <div class="rect viewer" id="step1-done"></div>-->
+<!--        <div class="circle viewer" id="step2">-->
+<!--        </div> <div id="step1" class="subtitle viewer">Dinle</div>-->
+<!---->
+<!--        </div>-->
+        <div class="element viewer">
         <div class="rect viewer" id="step2-done"></div>
         <div class="circle viewer" id="step3">
-        </div>
+        </div> <div id="step1" class="subtitle viewer">Belirle</div>
 
+        </div>
+        <div class="element viewer">
         <div class="rect viewer" id="step3-done"></div>
+
         <div class="circle viewer" id="step4">
+        </div>  <div id="step1" class="subtitle viewer">Tamamla</div>
+
         </div>
 
     </div>
         <style>
+            .element.viewer{
+                display: block;
+                justify-content: center;
+                color: #CC3300;
+            }
+            .subtitle.opens{
+                font-weight:bold;
+                border: 0px;
+            }
             .circle.viewer{
                 width: 20px;
                 height: 20px;
                 border-radius: 20px;
                 background-color: #CC3300;
+                margin: auto;
             }
-            .open.viewer{
+            .viewer.open{
                 border:5px solid #fb9c2e;
                 width: 15px;
                 height: 15px;
@@ -93,7 +116,7 @@ include_once('../front/header.php');
         </style>
     <div class="add-audio open" id="step1">
         <div style="margin: auto; margin-top: 20px;width: 100px;">
-        <input type="file" id="addsound" class="inputfile" accept="audio/*;capture=microphone">
+        <input type="file" name="soundfile" id="addsound" class="inputfile" accept="audio/*;capture=microphone">
         <label for="addsound" id="addsounds"><i style="font-size: 100px;" class="material-icons">
                 mic
             </i></label><br>
@@ -267,6 +290,7 @@ include_once('../front/header.php');
             <input type="hidden" name="location" id="value-location" value="" data-role="none">
         </div>
     </div>
+        <div class="alert" id="addaudio" style="padding: 20px;"></div>
     <div class="add-audio " id="step4">
         <div style="padding: 20px;">
         <textarea class="form" id='description' rows="10" placeholder="açıklama #etiket" maxlength="400"
@@ -276,6 +300,62 @@ include_once('../front/header.php');
 
     </div>
     </div>
+        <input type="hidden" name="author" value="<?php echo $_SESSION['user']['user_id']; ?>">
+        <input type="hidden" name="duration" id="duration" value="0">
     </form>
+    <audio id="audio" style="display: none"></audio>
+    <script>
+
+        //metin sınırı
+        $('#description.form').keyup(function () {
+            var len = $('#description.form').val();
+            $('#keysmetre').text('' + 400 - len.length + '');
+        });
+        //konum seçici
+
+        //süre hesaplama
+        var objectUrl;
+        var soundsize;
+        var soundduration;
+
+        $("#audio").on("canplaythrough", function (e) {
+
+            var seconds = e.currentTarget.duration;
+            var duration = moment.duration(seconds, "seconds");
+            soundduration = seconds;
+
+            var time = "";
+            var hours = duration.hours();
+            if (hours > 0) {
+                time = hours + ":";
+            }
+            time = time + duration.minutes() + ":" + duration.seconds();
+            $("#duration").val(seconds);
+            $('.alert').append('<br>Süre: ' + time);
+            if (soundduration > 120) {
+                $('.alert').append('<br>Maksimum Kayıt Süresi 2 dakika');
+                $('.alert').css('color', 'red');
+            }
+            URL.revokeObjectURL(objectUrl);
+        });
+
+        $("#addsound").change(function (e) {
+            var file = e.currentTarget.files[0];
+            // alert($("#soundfile").val());
+            // $("#filename").text(file.name);
+            // $("#filetype").text(file.type);
+            soundsize = file.size;
+            var new_number = Math.round(file.size / (1024)).toFixed(2);
+            $(".alert").append('<br>Ses boyutu: ' + new_number + ' Kb');
+            // $("#duration").val('time');
+            if (soundsize > $('#max-size').val()) {
+                $('.alert').append('<br>Dosya Boyutunu Aştınız');
+                $('.alert').css('color', 'red');
+            }
+            objectUrl = URL.createObjectURL(file);
+            $("#audio").prop("src", objectUrl);
+        });
+
+    </script>
 </div>
 <?php endif; ?>

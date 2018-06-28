@@ -1,0 +1,1 @@
+./ffmpeg -i tmp/$1.amr sounds/$1.mp3
