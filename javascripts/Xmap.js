@@ -259,7 +259,10 @@ var drawPointInit = function () {
         var count = object_list[i].items.count;
         var deg = 360 / count;
         var init = 0;
+        var at = 0;
+        var iat = 8;
         for (var y = 0; y < count; y++) {
+            if((y+1)%iat == 0) {at+=20;iat+=10}
             if (count === 1 || y == 0) {
                 var point = {
                     x: object_list[i].x / 1,
@@ -271,8 +274,8 @@ var drawPointInit = function () {
                 };
             } else {
                 var point = {
-                    x: object_list[i].x / 1 + object_list[i].r * Math.cos(init),
-                    y: object_list[i].y / 1 + object_list[i].r * Math.sin(init),
+                    x: object_list[i].x / 1 + (object_list[i].r  * Math.cos(init))+at,
+                    y: object_list[i].y / 1 + (object_list[i].r  * Math.sin(init))+at,
                     titre: object_list[i].items.id[y],
                     r: config.point.radius,
                     canvas: {x: null, y: null},
