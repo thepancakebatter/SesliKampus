@@ -3,7 +3,7 @@
         <div class="header" id="left"><span class="header" id="profil-icon"><i class="material-icons">account_circle</i></span>
         </div>
         <div class="header" id="mid"><a
-                    href="<?php echo $_SESSION['myHost']; ?>">Sesli Kampus</a></div>
+                    href="<?php echo $_SESSION['myHost']; ?>" style="color: whitesmoke;text-decoration: none;font-weight: bold;">Sesli Kampus</a></div>
         <div class="header" id="right">
             <div class="header" id="search-box" style="display: flex;">
                 <span class="header pages-slider open" id="search-icon" style="display: none;" data-port="container.search"><i
