@@ -21,16 +21,17 @@ foreach ($myLocID as $x){
     $obj['y'] = $Loc['positionY'];
     $obj['r'] = $Loc['radius'];
     $obj['color'] = $Loc['color'];
-    $obj['items'] = array('count'=>0,'id' => array());
+    $obj['items'] = array('count'=>0,'ids' => array());
     $Mapobject[$x] = $obj;
  }
 $sounds = $db->Xquery('SELECT sound_id,location_id FROM sk_location_relationships','',true,false);
 //print_r($sounds);
 foreach ($sounds as $x){
+    $color = $db->Xquery('SELECT color FROM sk_genres WHERE genre_id = ANY(SELECT genre_id FROM sk_sounds WHERE sound_id = ?)',$x['sound_id']);
 //    echo 'aa'.$x['location_id'].'<br>';
     $parent = findParent($x['location_id'],$conn);
-
-    array_push($Mapobject[$parent]['items']['id'],$x['sound_id']);
+    $point = array('id'=>$x['sound_id'],'color'=>$color);
+    array_push($Mapobject[$parent]['items']['ids'],$point);
     $Mapobject[findParent($x['location_id'],$conn)]['items']['count']++;
 }
 $jsonobj = array();

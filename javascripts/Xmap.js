@@ -267,19 +267,19 @@ var drawPointInit = function () {
                 var point = {
                     x: object_list[i].x / 1,
                     y: object_list[i].y / 1,
-                    titre: object_list[i].items.id[y],
+                    titre: object_list[i].items.ids[y].id,
                     r: config.point.radius,
                     canvas: {x: null, y: null},
-                    color: object_list[i].color
+                    color:  object_list[i].items.ids[y].color
                 };
             } else {
                 var point = {
                     x: object_list[i].x / 1 + (object_list[i].r  * Math.cos(init))+at,
                     y: object_list[i].y / 1 + (object_list[i].r  * Math.sin(init))+at,
-                    titre: object_list[i].items.id[y],
+                    titre: object_list[i].items.ids[y].id,
                     r: config.point.radius,
                     canvas: {x: null, y: null},
-                    color: object_list[i].color
+                    color: object_list[i].items.ids[y].color
                 };
                 init += deg;
             }
