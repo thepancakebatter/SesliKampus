@@ -66,7 +66,7 @@ class xquery
         }
         $sql = str_replace('?', $add, $sql);
         if ($debug) echo $sql;
-
+        mysqli_set_charset($this->conn, "utf8");
         if (strpos($sql, 'SELECT') !== false) {
             $result = mysqli_query($con, $sql);
             if(!$result){

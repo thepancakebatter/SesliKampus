@@ -18,7 +18,7 @@
         if (/Android/i.test(navigator.userAgent)) {
 
         }else {
-            // $('#sound-add-button').css('display','none');
+            $('#sound-add-button').css('display','none');
         }
        $('#sound-add-button').css('bottom',($('#footer-out.player-footer').innerHeight()+20)+'px');
         $('#sound-add-button').click(function () {
