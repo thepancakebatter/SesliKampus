@@ -41,7 +41,7 @@ foreach ($myLocID as $x){
 ?>
 <img class="Xmap" id="main-image" src="media/Map.jpg" style="display: none;">
 <div class="Xmap" id="container" >
-
+<?php   include_once ('addbutton.php'); ?>
     <input id="Zoom" type="range" class="Xmap" data-role="none"  style="opacity: 0" min="1" max="2" step="0.02" value="1">
     <canvas id="Map" class="XMap" style="border: 1px solid olivedrab"></canvas>
 </div>
@@ -72,6 +72,14 @@ foreach ($myLocID as $x){
         var obj = <?php echo json_encode($jsonobj, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
     var Xmap_width = window.innerWidth;
     var Xmap_height = window.innerHeight - $('#container.header').innerHeight() - $('#footer-out.player-footer').innerHeight();
+        if (/Android/i.test(navigator.userAgent)) {
+            Xmap_height = window.innerHeight - $('#container.header').innerHeight();
+
+        }else{
+            Xmap_height = window.innerHeight - $('#container.header').innerHeight() - $('#footer-out.player-footer').innerHeight();
+
+        }
+
     setupXmap('main-image',Xmap_width, Xmap_height, function () {
         //css declaration..
         $('body').css('overscroll-behavior-y','contain');
@@ -80,6 +88,9 @@ foreach ($myLocID as $x){
         $('#Zoom.Xmap').css('margin-left',(window.innerWidth - $('#Zoom.Xmap').innerWidth())/2+'px');
         $('img.Xmap').load(function () {
         init( obj, function () {
+            setActivePoint(points[0],function () {
+
+            });
             fulldrawMap();
             if (config.mobile) {
                 rePositionMobile();
@@ -92,9 +103,9 @@ foreach ($myLocID as $x){
                 var index = findIndexAMP(a.titre);
                 // Amplitude.playSongAtIndex(index);
                 Amplitude.playSongAtIndex(index);
-                setActivePoint(a,function () {
-                   drawActiveCircle();
-                });
+                // setActivePoint(a,function () {
+                //    drawActiveCircle();
+                // });
 
             }
         });

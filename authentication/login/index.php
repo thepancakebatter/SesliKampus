@@ -50,6 +50,7 @@ include_once('../../front/header.php');
             <div style="display: block;">
                 <input type="email" name="email" class="login input" id="email" placeholder="E-posta:" data-role="none">
                 <input type="password" name="password" class="login input" id="password" placeholder="Şifre:" data-role="none">
+                <div>Hesabın Yok Mu?Hemen<a href="../signup/index.php">Kaydol</a></div>
                 <button data-role="none" data-ajax="false" class="login" id="submit">Giriş</button>
             </div>
         </form>

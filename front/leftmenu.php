@@ -32,8 +32,16 @@
             <div id="locations" class="menu sub-container" ><?php include('front/menu_loc.php'); ?></div>
 <!--            <div id="genres" class="menu top-title">TÜRLER</div>-->
 <!--            <div id="genres" class="menu sub-container"></div>-->
-            <div id="about" class="menu top-title last">HAKKINDA</div>
+            <div id="about" class="menu top-title">HAKKINDA</div>
             <div id="about" class="menu sub-container"></div>
+            <?php if(isset($_SESSION['user'])): ?>
+            <div id="logout" class="menu top-title last">ÇIKIŞ</div>
+            <script>
+                $('#logout.menu').click(function () {
+                   window.location = '<?php echo  $_SESSION['myHost'].'back/logout.php';?>';
+                });
+            </script>
+            <?php endif; ?>
 
             <!--            <div id="locations" class="menu top-title">AYARLAR</div>-->
         </div>

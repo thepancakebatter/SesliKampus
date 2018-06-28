@@ -69,7 +69,7 @@ function init(objects, callback) {
         alert('Image size is not correct for your container: Image Height is smaller than containers');
         return;
     }
-    var rat = config.container.height / config.image.height;
+    // var rat = config.container.height / config.image.height;
     // config.scale = rat;
     drawPointInit();
     var canvas = document.getElementById('Map');
@@ -80,7 +80,7 @@ function init(objects, callback) {
     // $('#Map.Xmap').innerHeight(config.height);
     // $('#Map.Xmap').innerWidth(config.width);
     // $('#Map.Xmap').css('width', cont.width + 'px');
-    // $('#debug.Xmap').text(JSON.stringify(config));
+
     callback();
 };
 /*
@@ -129,6 +129,7 @@ var drawMap = function (e, d) {
     if (dfy < 0) {
         config.map.cy -= dfy * Kd;
     }
+    // $('#mid.header').append(JSON.stringify(config));
 
     var right = (config.image.width - config.container.width) * config.scale;
     var bottom = (config.image.height - config.container.height) * config.scale;
@@ -320,7 +321,7 @@ var onClickable = function () {
     document.getElementById("Map").addEventListener("touchmove", function (e) {
         click = false;
         myPosition = getTouchPosition(e);
-        // $('#mid.header').text(JSON.stringify(myPosition));
+        // $('#mid.header').text(JSON.stringify(config.map));
 
         for (var i = 0; i < clickable.length; i++) {
             if (isInPoint(clickable[i], myPosition)) {
@@ -393,6 +394,8 @@ var rePosition = function () {
         c1 = getMousePosition(e);
     });
     $('#Map.Xmap').mousemove(function (e) {
+        // $('#mid.header').text(JSON.stringify(config));
+
         if (trig) {
             $('#Map.Xmap').css('cursor', 'all-scroll');
             c2 = getMousePosition(e);
@@ -499,25 +502,27 @@ var getDifferential = function (v, axe) {
 };
 
 var ZoomMap = function () {
-    var mytrig = false;
-    $('#Zoom.Xmap').mousedown(function () {
-        mytrig = true;
-        config.scale = $(this).val();
-        resizedrawMap();
-        drawArea();
-        drawActiveCircle();
-    });
-    $('#Zoom.Xmap').mousemove(function () {
-        if (mytrig) {
-            config.scale = $(this).val();
-            resizedrawMap();
-            drawArea();
-            drawActiveCircle();
-        }
-    });
-    $('#Zoom.Xmap').mouseup(function () {
-        mytrig = false;
-    });
+
+    //-----harita zerindeki navigationu kırıyor----//
+    // var mytrig = false;
+    // $('#Zoom.Xmap').mousedown(function () {
+    //     mytrig = true;
+    //     config.scale = $(this).val();
+    //     resizedrawMap();
+    //     drawArea();
+    //     drawActiveCircle();
+    // });
+    // $('#Zoom.Xmap').mousemove(function () {
+    //     if (mytrig) {
+    //         config.scale = $(this).val();
+    //         resizedrawMap();
+    //         drawArea();
+    //         drawActiveCircle();
+    //     }
+    // });
+    // $('#Zoom.Xmap').mouseup(function () {
+    //     mytrig = false;
+    // });
 };
 var updateActivePosition = function () {
     var x = (active_point.x - config.map.cx) * config.scale;
@@ -525,9 +530,11 @@ var updateActivePosition = function () {
 
     config.map.cx = config.map.cx + (x-config.container.width*config.scale/2);
     config.map.cy = config.map.cy + (y-config.container.height*config.scale/2);
+
     var canvas = document.getElementById('Map');
     var ctx = canvas.getContext("2d");
     var img = document.getElementById(config.image.id);
+
     var right = (config.image.width - config.container.width) * config.scale;
     var bottom = (config.image.height - config.container.height) * config.scale;
     if (config.map.cx < 0) config.map.cx = 0;

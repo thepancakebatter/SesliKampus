@@ -34,9 +34,11 @@ if ($loadsite) {
     include_once('front/header.php');
 
 
+
     include_once('front/leftmenu.php');
 //    include_once('front/search.php');
     include_once('front/player_main.php');
+
     include_once('front/map.php');
     include_once('front/player_footer.php');
 
@@ -98,10 +100,13 @@ if ($loadsite) {
             }
 
         }
+        var fh = $('#footer-out.player-footer').innerHeight();
         if($('#main.player').hasClass('opened')){
             $('#footer-out.player-footer').slideUp(500);
+            $('#sound-add-button').css('bottom',20+'px');
         }else{
             $('#footer-out.player-footer').slideDown(500);
+            $('#sound-add-button').css('bottom',(fh+20)+'px');
         }
     });
     // $('#sound-info.player-footer').click(function () {
