@@ -8,18 +8,18 @@
     <link href='https://fonts.googleapis.com/css?family=Bungee' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://rawgithub.com/moment/moment/2.2.1/min/moment.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.css">
-    <script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+<!--    <link rel="stylesheet" href="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.css">-->
+<!--    <script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>-->
+<!--    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+<!--    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+<!--    <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>-->
+<!--    <script src="https://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>-->
     <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>
+<!--    <script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>-->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="<?php echo $_SESSION['host']; ?>javascripts/jquery.ui.touch-punch.min.js"></script>
-    <script src="<?php echo $_SESSION['host']; ?>javascripts/Xmap.js"></script>
+<!--    <script src="--><?php //echo $_SESSION['myHost']; ?><!--javascripts/jquery.ui.touch-punch.min.js"></script>-->
+    <script src="<?php echo $_SESSION['myHost']; ?>javascripts/Xmap.js"></script>
 
     <style>
         body {
@@ -113,17 +113,3 @@
     </style>
 
 </head>
-<script>
-    $(document).ready(function () {
-        // $.get('front/player.php',function (data) {
-        //     $('#main').html(data);
-        // });
-        var player_limit = {
-            sound_limit: 10
-        };
-        $.post('back/player/soundlists.php', player_limit, function (data) {
-            // alert(data);
-            $('#soundlist').html(data);
-        });
-    });
-</script>

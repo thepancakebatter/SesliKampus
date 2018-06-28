@@ -18,9 +18,13 @@
         <div class="menu" id="mid-top">
             <div id="profil-image" class="menu" style="padding-bottom: 3px; margin-right: 10px;"><i class="material-icons" style="font-size: 30px;text-shadow: none;">account_circle</i></div>
             <div id="authentication" class="menu">
-                <a id="login" class="menu" data-ajax="none">Giriş Yap</a>
+                <?php if(!isset($_SESSION['user'])):?>
+                <a id="login" class="menu" data-ajax="false" href="<?php echo  $_SESSION['myHost'].'authentication/login/index.php' ;?>" >Giriş Yap</a>
                 <span class='menu' style="font-size: 20px;font-weight: lighter;cursor: default;text-shadow: none;">|</span>
-                <a id="signup" class="menu" data-ajax="none">Kaydol</a>
+                <a id="signup" class="menu" data-ajax="false" href="<?php echo  $_SESSION['myHost'].'authentication/signup/index.php' ;?>">Kaydol</a>
+                <?php else: ?>
+                <a><?php echo $_SESSION['user']['name'].' '.$_SESSION['user']['f_name'];?></a>
+                <?php endif;?>
             </div>
         </div>
         <div class="menu" id="mid-bottom">
@@ -70,6 +74,7 @@
         color: #00002d;
         font-weight: lighter;
         text-shadow: none;
+        text-decoration: none;
     }
 
     #login.menu:hover {
@@ -77,6 +82,8 @@
     }
 
     #signup.menu {
+
+        text-decoration: none;
         color: #00002d;
         font-weight: bolder;
         text-shadow: none;

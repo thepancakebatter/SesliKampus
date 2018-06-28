@@ -1,4 +1,4 @@
-<div class="search" id="container">
+<div class="search" id="container" >
     <div class="search" id="top" style="display: flex; justify-content: space-between;">
 
         <input id="search-textbox" class="search" type="text" placeholder="search"

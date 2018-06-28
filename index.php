@@ -13,10 +13,10 @@ session_start();
 if (!isset($_SESSION['permission'])) {
     $_SESSION['permission'] = 0;
 }
-if (!isset($_SESSION['host'])) {
-    $_SESSION['host'] = $_SERVER['REQUEST_SCHEME'] . '://';
-    $_SESSION['host'] .= $_SERVER['HTTP_HOST'];
-    $_SESSION['host'] .= $_SERVER['REQUEST_URI'];
+if (!isset($_SESSION['myHost'])) {
+    $_SESSION['myHost'] = $_SERVER['REQUEST_SCHEME'] . '://';
+    $_SESSION['myHost'] .= $_SERVER['HTTP_HOST'];
+    $_SESSION['myHost'] .= $_SERVER['REQUEST_URI'];
 }
 if (file_exists('config.php')) {
     include_once('config.php');
@@ -28,20 +28,34 @@ if (file_exists('config.php')) {
 if ($loadsite) {
     echo '<html>';
     include_once('head.php');
-    if ($_SESSION['permission'] == 10) {
-        include_once('admin-seslikampus/index.php');
-    }
+//    if ($_SESSION['permission'] == 10) {
+//        include_once('admin-seslikampus/index.php');
+//    }
     include_once('front/header.php');
 
 
     include_once('front/leftmenu.php');
-    include_once('front/search.php');
+//    include_once('front/search.php');
     include_once('front/player_main.php');
     include_once('front/map.php');
     include_once('front/player_footer.php');
 
 }
 ?>
+<script>
+    $(document).ready(function () {
+        // $.get('front/player.php',function (data) {
+        //     $('#main').html(data);
+        // });
+        var player_limit = {
+            sound_limit: 10
+        };
+        $.post('back/player/soundlists.php', player_limit, function (data) {
+            // alert(data);
+            $('#soundlist').html(data);
+        });
+    });
+</script>
 <script src="javascripts/amplitudejs-3.3.0/dist/amplitude.js"></script>
 
 
