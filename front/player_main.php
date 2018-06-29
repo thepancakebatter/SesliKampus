@@ -18,9 +18,9 @@
                 <span amplitude-song-info="location" amplitude-main-song-info="true" class="song-name"></span>-<span
                         amplitude-song-info="author" amplitude-main-song-info="true" class="song-name"></span>
             </div>
-            <!--            <div>-->
-            <!--                <span><i class="material-icons">close</i></span>-->
-            <!--            </div>-->
+                        <div>
+                            <span><i style="font-weight: bold;" class="material-icons">close</i></span>
+                        </div>
 
         </div>
     </div>

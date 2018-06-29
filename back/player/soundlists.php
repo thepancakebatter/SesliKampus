@@ -49,7 +49,10 @@ foreach ($soundID as $x) {
             "callbacks": {
                 'after_play': function () {
                     playCount++;
-                    activeSongIsLiked();
+                    $('#container.draggable-list').slideUp(500);
+
+                    window.time_line = false;
+                    // activeSongIsLiked();
                     setAnimation();
                     var index = Amplitude.getActiveIndex();
                     $('#' + index + '.sound-itemlist-container').addClass('playing');

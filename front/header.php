@@ -20,7 +20,9 @@
 </div>
 <div class="draggable-list" id="container">
     <div class="draggable-list" id="inside"></div>
-    <div class="draggable-list" id="callback">Sesli Kampus</div>
+    <div class="draggable-list" id="callback" style="display: flex; justify-content: space-between;padding: 15px;"><div>Sesli Kampus</div><i class="material-icons">
+            eject
+        </i></div>
 </div>
 
 
@@ -78,13 +80,13 @@
 
     #callback.draggable-list {
         text-align: center;
-        font-size: 16px;
+        font-size: 20px;
         font-weight: bold;
         color: whitesmoke;
         text-shadow: none;
-        padding-top: 4px;
+
         margin: auto;
-        width: 100%;
+        /*width: 100%;*/
         height: 25px;
         top: 100%;
         left: 0px;
@@ -164,8 +166,9 @@
     //         // $('#container.draggable-list').css('height',top+'px');
     //     });
     // });
+    var time_line = false;
     $(document).ready(function () {
-        var time_line = false;
+
         var h = (window.innerHeight * 75 / 100);
         $('#container.draggable-list').css('height', h + 'px');
         // $('#toggle').css('bottom','-15px');
@@ -175,29 +178,29 @@
         $('#inside.draggable-list').css('opacity', '1');
         $('#container.draggable-list').slideUp(0);
         $('#toggle').click(function () {
-            if (time_line == false) {
+            if (window.time_line == false) {
 
                 $('#container.draggable-list').slideDown(500);
                 $('#callback.draggable-list').slideDown(500);
 
-                time_line = true;
+                window.time_line = true;
             }
             else {
                 $('#container.draggable-list').slideUp(500);
 
-                time_line = false;
+                window.time_line = false;
             }
         });
         $('#Map.Xmap').click(function () {
 
             $('#container.draggable-list').slideUp(500);
 
-            time_line = false;
+            window.time_line = false;
         });
         $('#callback.draggable-list').click(function () {
             $('#container.draggable-list').slideUp(500);
 
-            time_line = false;
+            window.time_line = false;
         });
     });
     // $(document).ready(function () {
