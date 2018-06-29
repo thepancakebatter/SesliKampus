@@ -21,7 +21,7 @@ var config = {
     scale: 1,
     mobile: false,
     point: {
-        radius: 5,
+        radius: 6,
         title: false,
         option: {
             x: null,
@@ -59,6 +59,9 @@ var setupXmap = function (ImageId, width, height, callback) {
 function init(objects, callback) {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         config.mobile = true;
+    }
+    if (/webOS|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        config.point.radius = 10;
     }
     object_list = objects;
     if (config.image.width < config.container.width) {

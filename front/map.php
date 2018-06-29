@@ -48,7 +48,7 @@ foreach ($myLocID as $x){
 </div>
 
 <style>
-    #container.map {
+    #container.XMap {
         overflow: hidden;
     }
 
@@ -73,7 +73,7 @@ foreach ($myLocID as $x){
         var obj = <?php echo json_encode($jsonobj, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
     var Xmap_width = window.innerWidth;
     var Xmap_height = window.innerHeight - $('#container.header').innerHeight() - $('#footer-out.player-footer').innerHeight();
-        if (/Android/i.test(navigator.userAgent)) {
+        if (/Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
             Xmap_height = window.innerHeight - $('#container.header').innerHeight();
 
         }else{
