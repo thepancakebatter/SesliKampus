@@ -106,10 +106,13 @@
         transition: 2s;
         z-index: 99;
     }
-
+    #meta.sound-itemlist{
+        display: flex;
+        justify-content: space-between;
+    }
     .sound-itemlist-container {
-        background-color: #f7e4e1;
-        border-bottom: 1px solid #3adb76;
+        background-color: whitesmoke;
+        border-bottom: 0px solid #3adb76;
     }
 
     .sound-itemlist-container.playing {
@@ -117,15 +120,18 @@
     }
 
     #cover.sound-itemlist {
-        width: 50px;
-        height: 50px;
+        width: 57px;
+        height: 57px;
 
     }
-
+    #right.sound-itemlist{
+        margin-top: auto;
+        margin-bottom: auto;
+    }
     #meta.sound-itemlist {
-        display: block;
-        padding: 5px;
         width: 100%;
+        padding: 10px;
+
     }
 
     #row1.sound-itemlist {
@@ -135,8 +141,13 @@
 
     #row2.sound-itemlist {
         display: flex;
-        justify-content: space-between;
+        font-size: 14px;
     }
+    #titre.sound-itemlist{
+        font-family: Bungee;
+        font-size: 14px;
+    }
+
 
 </style>
 <script>
