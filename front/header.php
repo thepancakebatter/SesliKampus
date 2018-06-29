@@ -1,19 +1,24 @@
 <div class="header" id="container">
     <div class="header" id="in-container">
-        <div class="header" id="left"><span class="header" id="profil-icon"><i class="material-icons">account_circle</i></span>
+        <div class="header" id="left"><span class="header" id="profil-icon"><i style="font-size: 30px;"
+                                                                               class="material-icons">account_circle</i></span>
         </div>
         <div class="header" id="mid"><a
-                    href="<?php echo $_SESSION['myHost']; ?>" style="color: whitesmoke;text-decoration: none;font-weight: bold;">Sesli Kampus</a></div>
+                    href="<?php echo $_SESSION['myHost']; ?>"
+                    style="color: whitesmoke;text-decoration: none;font-weight: bold;"> Sesli Kampus</a></div>
         <div class="header" id="right">
             <div class="header" id="search-box" style="display: flex;">
-                <span class="header pages-slider open" id="search-icon" style="display: none;" data-port="container.search"><i
-                            class="material-icons">search</i></span><span class="draggable-list" id="toggle" style="margin-left: 10px;"><i
+                <span class="header pages-slider open" id="search-icon" style="display: none;"
+                      data-port="container.search"><i
+                            class="material-icons">search</i></span><span class="draggable-list" id="toggle"
+                                                                          style=" margin-left: 10px;"><i
+                            style="font-size:30px;"
                             class="material-icons">playlist_play</i></span>
             </div>
         </div>
     </div>
 </div>
-<div class="draggable-list ui-widget-content" id="container">
+<div class="draggable-list" id="container">
     <div class="draggable-list" id="inside"></div>
     <div class="draggable-list" id="callback">Sesli Kampus</div>
 </div>
@@ -26,17 +31,22 @@
         display: none;
     }
 
+    #mid.header {
+        margin: auto;
+    }
+
     #container.header {
         width: 100%;
-        height: 40px;
+        /*height: 40px;*/
         background: #CC3300;
         color: whitesmoke;
         position: fixed;
         top: 0px;
         left: 0px;
-        max-height: 40px;
+        max-height: 50px;
         text-shadow: none;
         z-index: 99;
+        font-size: 20px;
 
     }
 
@@ -61,27 +71,31 @@
         /*overflow:scroll;*/
         z-index: 99;
     }
-    #callback.draggable-list:hover{
+
+    #callback.draggable-list:hover {
         cursor: pointer;
     }
+
     #callback.draggable-list {
         text-align: center;
-        font-size: 13px;
+        font-size: 16px;
+        font-weight: bold;
         color: whitesmoke;
         text-shadow: none;
         padding-top: 4px;
-    margin: auto;
-    width: 100%;
-    height: 25px;
-    top: 100%;
-    left: 0px;
-    right: 0px;
+        margin: auto;
+        width: 100%;
+        height: 25px;
+        top: 100%;
+        left: 0px;
+        right: 0px;
         display: none;
-    background-color: #cc4b37;
-    /*border-radius: 30px;*/
+        background-color: #cc4b37;
+        /*border-radius: 30px;*/
 
         z-index: 98;
     }
+
     #inside.draggable-list {
         /*border: 2px solid red;*/
         padding: 0px;
@@ -141,11 +155,11 @@
     // });
     $(document).ready(function () {
         var time_line = false;
-        var h = (window.innerHeight*75/100);
-        $('#container.draggable-list').css('height',h+'px');
+        var h = (window.innerHeight * 75 / 100);
+        $('#container.draggable-list').css('height', h + 'px');
         // $('#toggle').css('bottom','-15px');
         // $('#toggle').css('top','100%');
-        $('#inside.draggable-list').css('height', h+'px');
+        $('#inside.draggable-list').css('height', h + 'px');
         // $('#container.draggable-list').css('opacity', '1');
         $('#inside.draggable-list').css('opacity', '1');
         $('#container.draggable-list').slideUp(0);
@@ -162,6 +176,12 @@
 
                 time_line = false;
             }
+        });
+        $('#Map.Xmap').click(function () {
+
+            $('#container.draggable-list').slideUp(500);
+
+            time_line = false;
         });
         $('#callback.draggable-list').click(function () {
             $('#container.draggable-list').slideUp(500);
