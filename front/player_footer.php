@@ -19,6 +19,26 @@
         </div>
         <div class="player-footer" id="like"><span class="like-button unlike" id="player-footer"><i
                         class="material-icons">favorite_border</i></span></div>
+        <script>
+            // $(document).ready(function () {
+            //    $('.like-button').click(function () {
+            //        var song  = Amplitude.getActiveSongMetadata();
+            //        // alert(JSON.stringify(song));
+            //        $.post('back/liked.php',{sound_id:song.id,click:true},function (data) {
+            //            if(data == 'added'){
+            //                $('.like-button').children().text('favorite');
+            //            }
+            //            else if(data == 'removed'){
+            //                $('.like-button').children().text('favorite_border');
+            //            }
+            //            else{
+            //                alert(data+'lütfen Giriş Yapınız');
+            //            }
+            //        });
+            //    }) ;
+            // });
+            //todo:like fonksiyonu düzeltilecek
+        </script>
     </div>
 </div>
 </div>

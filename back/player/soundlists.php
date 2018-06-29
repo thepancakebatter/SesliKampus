@@ -49,6 +49,7 @@ foreach ($soundID as $x) {
             "callbacks": {
                 'after_play': function () {
                     playCount++;
+                    activeSongIsLiked();
                     setAnimation();
                     var index = Amplitude.getActiveIndex();
                     $('#' + index + '.sound-itemlist-container').addClass('playing');
@@ -108,6 +109,21 @@ foreach ($soundID as $x) {
         };
         cover_draw(100, 100, 50, 50);
         //todo:data base üzerinden çekilcek x,y,w,h
+<!--        --><?php
+//        $likes = $db ->Xquery('SELECT sound_id FROM sk_likes WHERE user_id = ?',$_SESSION['user']['user_id']);
+//        echo 'var likes'
+//        ?>
+//         var activeSongIsLiked = function () {
+//             var song  = Amplitude.getActiveSongMetadata();
+//             $.post('back/liked.php',{sound_id:song.id,click:false},function (data) {
+//                 if(data == 'exist'){
+//                     $('.like-button').children().text('favorite');
+//                 }
+//                 if(data == 'not-exist'){
+//                     $('.like-button').children().text('favorite_border');
+//                 }
+//             });
+//         };
     });
     // var song = Amplitude.getSongs();
     $(document).ready(function () {
