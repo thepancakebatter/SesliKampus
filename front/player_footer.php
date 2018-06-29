@@ -13,7 +13,7 @@
                         $('#meta-container.player-footer').css('max-width',($('#footer-out.player-footer').innerWidth()-150)+'px');
                     });
                 </script>
-                <span amplitude-song-info="titre" amplitude-main-song-info="true" class="song-name" style="white-space:nowrap;font-family: Bungee;"></span><br>
+                <span amplitude-song-info="titre" amplitude-main-song-info="true" class="song-name" id="footer-titre" style="white-space:nowrap;font-family: Bungee;"></span><br>
                 <span amplitude-song-info="location" amplitude-main-song-info="true" class="song-name"></span>
             </div>
         </div>
@@ -104,9 +104,33 @@
     /*background: url("media/icons/round-pause-24px.svg");*/
 
     /*}*/
+    .footer-overflow{
+        position: relative;
+        -webkit-animation-name: footer_overflow; /* Safari 4.0 - 8.0 */
+        -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+        -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+        animation-name: footer_overflow;
+        animation-duration: 16s;
+        animation-delay: -4s;
+        animation-iteration-count: infinite;
 
+    }
+    @keyframes footer_overflow {
+        0%      {left:0px; }
+        50% {left:100px;}
+        100% {left:-100px;}
+
+
+        
+    }
+    @-webkit-keyframes footer_overflow {
+        0%      {left:0px; }
+        50% {left:100px;}
+        100% {left:-100px;}
+    }
 </style>
 <script>
+
     document.getElementById('song-played-progress').addEventListener('click', function( e ){
         var offset = this.getBoundingClientRect();
         var x = e.pageX - offset.left;

@@ -38,7 +38,9 @@ foreach ($soundID as $x) {
 
 ?>
 <script>
+
     $(document).ready(function () {
+
         var playCount = 0;
         var prev_song;
         Amplitude.init({
@@ -50,7 +52,7 @@ foreach ($soundID as $x) {
             "callbacks": {
                 'after_play': function () {
                     playCount++;
-
+                    setAnimation();
                     var index = Amplitude.getActiveIndex();
                     $('#'+index+'.sound-itemlist-container').addClass('playing');
                     $('#'+index+'.sound-itemlist-container').removeClass('paused');
@@ -64,6 +66,7 @@ foreach ($soundID as $x) {
                         updateActivePosition();
                         drawArea();
                         drawActiveCircle();
+
                     }); //XMAP.js
 
                 },
@@ -111,15 +114,23 @@ foreach ($soundID as $x) {
     });
     // var song = Amplitude.getSongs();
     $(document).ready(function () {
-
+        setAnimation();
         createtimelist();
         $('.sound-itemlist-container').click(function () {
            // alert($(this).get(0).id);
             Amplitude.skipTo(0,$(this).get(0).id);
         });
+
+
     });
 
-
+  function setAnimation() {
+        if ($('#footer-titre').innerWidth() > $('#meta-container.player-footer').innerWidth()) {
+            $('#footer-titre').addClass('footer-overflow');
+        }else{
+            $('#footer-titre').removeClass('footer-overflow');
+        }
+    };
     function createtimelist() {
         var song = Amplitude.getSongs();
         for (var i = 0; i < song.length; i++) {
